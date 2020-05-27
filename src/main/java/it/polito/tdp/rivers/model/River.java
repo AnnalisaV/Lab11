@@ -1,5 +1,6 @@
 package it.polito.tdp.rivers.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,31 @@ public class River {
 	private double flowAvg;
 	private List<Flow> flows;
 	
+	private String primaMisurazione; 
+	private String ultimaMisurazione; 
+	private int misurazioniTot; 
+	
+	
+	/**
+	 * @param id
+	 * @param name
+	 * @param flowAvg
+	 * @param flows
+	 * @param primaMisurazione
+	 * @param ultimaMisurazione
+	 * @param misurazioniTot
+	 */
+	public River(int id, String name, double flowAvg, String primaMisurazione,
+			String ultimaMisurazione, int misurazioniTot) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.flowAvg = flowAvg;
+		this.primaMisurazione = primaMisurazione;
+		this.ultimaMisurazione = ultimaMisurazione;
+		this.misurazioniTot = misurazioniTot;
+	}
+
 	public River(int id) {
 		this.id = id;
 	}
@@ -78,4 +104,19 @@ public class River {
 			return false;
 		return true;
 	}
+
+	public String getPrimaMisurazione() {
+		return primaMisurazione;
+	}
+
+	public String getUltimaMisurazione() {
+		return ultimaMisurazione;
+	}
+
+	public int getMisurazioniTot() {
+		return misurazioniTot;
+	}
+	
+	
+	
 }

@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.polito.tdp.rivers.model.Model;
+import it.polito.tdp.rivers.model.River;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,7 +27,7 @@ public class FXMLController {
     private URL location;
 
     @FXML // fx:id="boxRiver"
-    private ComboBox<?> boxRiver; // Value injected by FXMLLoader
+    private ComboBox<River> boxRiver; // Value injected by FXMLLoader
 
     @FXML // fx:id="txtStartDate"
     private TextField txtStartDate; // Value injected by FXMLLoader
@@ -60,7 +62,32 @@ public class FXMLController {
         assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Scene.fxml'.";
     }
     
+    @FXML
+    void doSimula(ActionEvent event) {
+
+    }
+
+
+    /**
+     * Rimepimento dei campiTesto con le info sul {@code River} selezionato
+     * @param event
+     */
+    @FXML
+    void imposta(ActionEvent event) {
+
+    	River r= this.boxRiver.getValue(); 
+    	River ri= this.model.info(r); 
+    	
+    	this.txtStartDate.setText(ri.getPrimaMisurazione());
+    	this.txtEndDate.setText(ri.getUltimaMisurazione());
+    	this.txtFMed.setText(Double.toString(ri.getFlowAvg()));
+    	this.txtNumMeasurements.setText(Integer.toString(ri.getMisurazioniTot()));
+    
+    }
+    
+    
     public void setModel(Model model) {
     	this.model = model;
+    	this.boxRiver.getItems().addAll(this.model.getRivers()); 
     }
 }
